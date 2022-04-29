@@ -41,6 +41,11 @@ export const RECIPE: recipe[] = [
             name: "Salz",
             amount: 1,
             unit: 'Prise'
+        },
+        {
+            name: "Pfeffer",
+            amount: 1,
+            unit: 'Prise'
         }
     ],
         preparation: "Mischen, inne Pfanne, würzen, servieren"
