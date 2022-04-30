@@ -22,7 +22,8 @@ export const RECIPE: recipe[] = [
                 unit: 'l'
             }
         ],
-        preparation: "Mischen, inne Pfanne, servieren"
+        preparation: "Mischen, inne Pfanne, servieren",
+        tags: []
     },
     {
         id: 2,
@@ -48,6 +49,7 @@ export const RECIPE: recipe[] = [
             unit: 'Prise'
         }
     ],
-        preparation: "Mischen, inne Pfanne, würzen, servieren"
+        preparation: "Mischen, inne Pfanne, würzen, servieren",
+        tags: []
     }
 ];

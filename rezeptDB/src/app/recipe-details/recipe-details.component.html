@@ -1,0 +1,11 @@
+<div *ngIf="recipe">
+    <h1 mat-dialog-title>{{recipe.name}} Rezept</h1>
+    <div mat-dialog-content>
+        <ul>
+            <li *ngFor="let ingredient of recipe.ingredients">
+                <label>{{ingredient.name}}</label>
+            </li>
+        </ul>
+        {{recipe.preparation}}
+    </div>
+</div>

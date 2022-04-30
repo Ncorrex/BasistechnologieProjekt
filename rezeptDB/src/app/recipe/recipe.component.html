@@ -1,11 +1,7 @@
-<ul>
+<ol>
     <li *ngFor="let recipe of recipes">
-        <h2>{{recipe.name}}</h2>
-        <ul>
-            <li *ngFor="let ingredient of recipe.ingredients">
-                <label>{{ingredient.amount}}{{ingredient.unit}} {{ingredient.name}}</label>
-            </li>
-        </ul>
-        {{recipe.preparation}}
+        <button mat-button (click)="onSelect(recipe)">{{recipe.name}}</button>
     </li>
-</ul>
+</ol>
+
+<app-recipe-details [recipe]="selectedRecipe"></app-recipe-details>

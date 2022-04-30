@@ -4,5 +4,6 @@ export interface recipe {
     id: number
     name: string
     ingredients: ingredient[]
-    preparation: string
+    preparation: string,
+    tags: string[]
 }
