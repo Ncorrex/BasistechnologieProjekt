@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { RECIPE } from '../mock-recipe';
-import { recipe } from '../recipe';
+import { Recipe } from '../recipe';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
 
 @Component({
@@ -9,17 +10,22 @@ import { RecipeDetailsComponent } from '../recipe-details/recipe-details.compone
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent {
 
   recipes = RECIPE;
-  selectedRecipe?: recipe;
-  constructor() { }
+  selectedRecipe?: Recipe; 
+  title = "4 minus 1";
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-  }
-
-  
-  onSelect(recipe: recipe): void{
+  openDialog(recipe: Recipe) {
     this.selectedRecipe = recipe;
-  };
+    const dialogRef = this.dialog.open(RecipeDetailsComponent, {
+      role: "dialog",
+      data: this.selectedRecipe,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

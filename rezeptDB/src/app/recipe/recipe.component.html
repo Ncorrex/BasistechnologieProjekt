@@ -1,7 +1,10 @@
-<ol>
-    <li *ngFor="let recipe of recipes">
-        <button mat-button (click)="onSelect(recipe)">{{recipe.name}}</button>
-    </li>
-</ol>
-
-<app-recipe-details [recipe]="selectedRecipe"></app-recipe-details>
+    <ul class="no-bullets">
+        <li *ngFor="let recipe of recipes">
+            <section>
+            <div class="example-button-row">
+            <button mat-raised-button (click)="openDialog(recipe)">{{recipe.name}}</button>
+            </div>
+            </section>
+        </li>
+    </ul>
+<!-- <app-recipe-details [recipe]="selectedRecipe"></app-recipe-details> -->
