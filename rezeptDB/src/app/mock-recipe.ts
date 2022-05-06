@@ -1,7 +1,7 @@
-import { recipe } from "./recipe";
+import { Recipe } from "./recipe";
 import { ingredient } from "./ingredient";
 
-export const RECIPE: recipe[] = [
+export const RECIPE: Recipe[] = [
     {
         id: 1,
         name: 'Pfannekuchen',
