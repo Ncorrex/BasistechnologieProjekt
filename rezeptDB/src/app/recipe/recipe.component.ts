@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RECIPE } from '../mock-recipe';
 import { Recipe } from '../recipe';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
+import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 
 @Component({
   selector: 'app-recipe',
@@ -17,9 +18,10 @@ export class RecipeComponent {
   title = "4 minus 1";
   constructor(public dialog: MatDialog) {}
 
-  openDialog(recipe: Recipe) {
+  openRecipe(recipe: Recipe) {
     this.selectedRecipe = recipe;
     const dialogRef = this.dialog.open(RecipeDetailsComponent, {
+      width: '500px',
       role: "dialog",
       data: this.selectedRecipe,
     });
@@ -27,5 +29,9 @@ export class RecipeComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  addRecipe(){
+    const dialogRef = this.dialog.open(AddRecipeComponent)
   }
 }

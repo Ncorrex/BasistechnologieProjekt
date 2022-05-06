@@ -3,7 +3,8 @@
     <div mat-dialog-content>
         <ul>
             <li *ngFor="let ingredient of recipe.ingredients">
-                <label>{{ingredient.name}}</label>
+                <!-- TODO: Material Table https://material.angular.io/components/table/examples -->
+                <label><span>{{ingredient.amount}}{{ingredient.unit}}</span>  <span>  {{ingredient.name}}</span></label>
             </li>
         </ul>
         {{recipe.preparation}}

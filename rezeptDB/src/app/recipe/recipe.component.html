@@ -1,10 +1,15 @@
-    <ul class="no-bullets">
-        <li *ngFor="let recipe of recipes">
-            <section>
-            <div class="example-button-row">
-            <button mat-raised-button (click)="openDialog(recipe)">{{recipe.name}}</button>
-            </div>
-            </section>
-        </li>
-    </ul>
+<ul class="no-bullets">
+    <li *ngFor="let recipe of recipes">
+        <section>
+        <div class="button">
+            <button mat-raised-button (click)="openRecipe(recipe)">{{recipe.name}}</button>
+        </div>
+        </section>
+    </li>
+</ul>
+
+<mat-divider></mat-divider>
+<div class="button">
+    <button mat-raised-button (click)="addRecipe()">Rezept hinzufügen</button>
+</div>
 <!-- <app-recipe-details [recipe]="selectedRecipe"></app-recipe-details> -->
