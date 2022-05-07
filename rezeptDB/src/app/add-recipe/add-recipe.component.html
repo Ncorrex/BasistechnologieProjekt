@@ -1,2 +1,11 @@
-<p>add-recipe works!</p>
-<!-- TODO: addRecipe field and connection to some (at best our) database -->
+<div>
+    <label for="new-recipe-name">Rezeptname: </label>
+    <input id="new-recipe-name" #recipeName /><br/>
+
+    <label for="new-recipe-prep">Zubereitung: </label>
+    <input mat-input id="new-recipe-prep" #recipePrep /><br/>
+
+    <button mat-raised-button class="add-button" (click)="add(recipeName.value, recipePrep.value)">
+        Rezept hinzufügen
+    </button>
+</div>

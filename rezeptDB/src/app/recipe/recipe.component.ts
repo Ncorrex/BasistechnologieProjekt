@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { RECIPE } from '../mock-recipe';
 import { Recipe } from '../recipe';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
-export class RecipeComponent {
+export class RecipeComponent implements OnInit{
+  recipes: Recipe[] = [];
+  selectedRecipe?: Recipe;
+  constructor(public dialog: MatDialog, private recipeService: RecipeService) {}
 
-  recipes = RECIPE;
-  selectedRecipe?: Recipe; 
-  title = "4 minus 1";
-  constructor(public dialog: MatDialog) {}
+  public ngOnInit(): void {
+    this.getRecipes();
+  }
+
+  getRecipes(): void {
+    this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
+  }
 
   openRecipe(recipe: Recipe) {
     this.selectedRecipe = recipe;
@@ -32,6 +38,8 @@ export class RecipeComponent {
   }
 
   addRecipe(){
-    const dialogRef = this.dialog.open(AddRecipeComponent)
+    const dialogRef = this.dialog.open(AddRecipeComponent, {
+      data: this.recipes,
+    })
   }
 }
