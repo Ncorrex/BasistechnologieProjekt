@@ -36,6 +36,15 @@ export class RecipeService {
     );
   }
 
+  searchRecipe(term: string): Observable<Recipe[]> {
+    if(!term.trim()){
+      return of([]);
+    }
+    return this.http.get<Recipe[]>(`${this.recipesUrl}/?name=${term}`).pipe(
+      catchError(this.handleError<Recipe[]>('searchRecipe', []))
+    );
+  }
+
   updateRecipe(recipe: Recipe): Observable<any> {
     return this.http.put(this.recipesUrl, recipe, this.httpOptions).pipe(catchError(this.handleError<any>('updateRecipe'))
     );

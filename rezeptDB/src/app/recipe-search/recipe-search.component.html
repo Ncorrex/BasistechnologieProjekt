@@ -1,0 +1,25 @@
+<div id="search-component">
+    <mat-form-field appearance="fill">
+    <mat-label for="search-box">Suche Rezept...</mat-label>
+    <input matInput #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </mat-form-field>
+
+    <div *ngIf="searchBox.value == ''">
+        <ul class="no-bullets">
+            <li *ngFor="let recipe of recipes">
+                <section>
+                    <button mat-raised-button (click)="openRecipe(recipe)">{{recipe.name}}</button>
+                </section>
+                <br/>
+            </li>
+        </ul>
+    </div>
+    <ul class="no-bullets">
+        <li *ngFor="let recipe of recipes$ | async">
+            <section>
+                <button mat-raised-button (click)="openRecipe(recipe)">{{recipe.name}}</button>
+            </section>
+            <br/>
+        </li>
+    </ul>
+</div>

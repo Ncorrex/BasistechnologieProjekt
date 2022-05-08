@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RECIPE } from '../mock-recipe';
 import { Recipe } from '../recipe';
 import { RecipeDetailsComponent } from '../recipe-details/recipe-details.component';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
@@ -23,6 +22,8 @@ export class RecipeComponent implements OnInit{
   getRecipes(): void {
     this.recipeService.getRecipes().subscribe(recipes => this.recipes = recipes);
   }
+
+
 
   openRecipe(recipe: Recipe) {
     this.selectedRecipe = recipe;

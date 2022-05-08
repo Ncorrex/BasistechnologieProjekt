@@ -18,13 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { FormsModule } from '@angular/forms';
+import { RecipeSearchComponent } from './recipe-search/recipe-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeComponent,
     RecipeDetailsComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    RecipeSearchComponent
   ],
   imports: [
     FormsModule,
