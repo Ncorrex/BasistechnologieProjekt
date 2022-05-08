@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe';
 import { ingredient } from '../ingredient';
@@ -9,20 +9,41 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css']
 })
-export class AddRecipeComponent {
-  selectedIngredient: string = "";
+export class AddRecipeComponent implements OnInit{
+  selectedIngredient?: ingredient;
   constructor(public dialogRef: MatDialogRef<AddRecipeComponent>, private recipeService: RecipeService, @Inject(MAT_DIALOG_DATA) public recipes: Recipe[]) { }
 
-  posIngredients: string[] = ['Eier', 'Zucker', 'Milch', 'Mehl'];
-  
+  ngOnInit(): void {
+      this.getIngredients();
+  }
+
+  posIngredients: ingredient[] = [];
+  tempIngredients: ingredient[] = [];
+
+  getIngredients(): void {
+    this.recipeService.getIngredients().subscribe(ingrendients => this.posIngredients = ingrendients);
+  }
+
   exportIngredients: ingredient[] = [];
 
-  addIngredientField(name: string, amount: string): void {
-    this.exportIngredients.push({
-      name: name,
-      amount: parseInt(amount),
-      unit: 'test'
-    })
+  addIngredientField(ing: ingredient, amount: string): void {
+    if (amount && ing){
+      this.exportIngredients.push({
+        name: ing.name,
+        amount: parseInt(amount),
+        unit: ing.unit
+      })
+    }
+  }
+
+  removeIngredient(ing: ingredient): void {
+    this.tempIngredients = this.exportIngredients;
+    this.exportIngredients = []
+    for(let ingredient of this.tempIngredients) {
+      if (ingredient != ing){
+        this.exportIngredients.push(ingredient);
+      }
+    }
   }
 
   add(name: string, prep: string): void {

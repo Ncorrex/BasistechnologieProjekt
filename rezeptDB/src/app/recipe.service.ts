@@ -4,6 +4,7 @@ import { Recipe } from './recipe';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ingredient } from './ingredient';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,14 @@ export class RecipeService {
   ) { }
 
   private recipesUrl = 'api/recipes';
+  private ingredientsUrl = 'api/ingredients';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
+
+  getIngredients(): Observable<ingredient[]>{
+    return this.http.get<ingredient[]>(this.ingredientsUrl).pipe(catchError(this.handleError<ingredient[]>('getIngredients', [])));
+  }
 
   getRecipes(): Observable<Recipe[]>{
     return this.http.get<Recipe[]>(this.recipesUrl).pipe(catchError(this.handleError<Recipe[]>('getRecipes', [])));

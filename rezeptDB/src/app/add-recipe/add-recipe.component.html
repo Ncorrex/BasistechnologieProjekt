@@ -1,28 +1,34 @@
 <!--Rezept Name-->
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" class="neuesRezeptFeld">
     <mat-label>Rezept Name</mat-label>
     <input matInput #recipeName>
 </mat-form-field><br/>
 <!--Zutaten-->
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" class="Zutat">
     <mat-label>Zutat</mat-label>
     <mat-select [(ngModel)]="selectedIngredient">
         <mat-option *ngFor="let ingredient of posIngredients" [value]="ingredient" >
-            {{ingredient}}
+            {{ingredient.name}}
             </mat-option>
     </mat-select>
 </mat-form-field>
-<mat-form-field class="Menge" appearance="fill">
+<mat-form-field appearance="fill" class="Menge">
     <mat-label>Menge</mat-label>
     <input matInput #ingredientAmount>
 </mat-form-field>
-<button mat-raised-button class="plus-button" (click)="addIngredientField(selectedIngredient, ingredientAmount.value)">+</button>
+<div *ngIf="selectedIngredient">
+    <button mat-raised-button class="plus-button" (click)="addIngredientField(selectedIngredient, ingredientAmount.value)">+</button>
+</div>
+
 <ul>
-    <li *ngFor="let ingredient of exportIngredients">{{ingredient.name}}</li>
+    <li *ngFor="let ingredient of exportIngredients">
+        {{ingredient.amount}}{{ingredient.unit}} {{ingredient.name}}
+        <button mat-raised-button (click)="removeIngredient(ingredient)">-</button>
+    </li>
 </ul><br/>
 
 <!--Zubereitung-->
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" class="neuesRezeptFeld">
     <mat-label>Zubereitung</mat-label>
     <textarea matInput #recipePrep></textarea>
 </mat-form-field><br/>

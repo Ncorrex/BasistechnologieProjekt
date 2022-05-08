@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Recipe } from './recipe';
+import { ingredient } from './ingredient';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,16 @@ export class InMemoryDataService implements InMemoryDbService{
           tags: []
       }
   ];
-  return {recipes};
+  const ingredients = [
+    {
+        name: 'Mehl',
+        unit: 'g'
+    }
+  ]
+  return {
+        ingredients,
+        recipes
+    };
   }
 
   genId(recipes: Recipe[]): number {
