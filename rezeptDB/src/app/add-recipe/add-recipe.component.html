@@ -1,11 +1,32 @@
-<div>
-    <label for="new-recipe-name">Rezeptname: </label>
-    <input id="new-recipe-name" #recipeName /><br/>
+<!--Rezept Name-->
+<mat-form-field appearance="fill">
+    <mat-label>Rezept Name</mat-label>
+    <input matInput #recipeName>
+</mat-form-field><br/>
+<!--Zutaten-->
+<mat-form-field appearance="fill">
+    <mat-label>Zutat</mat-label>
+    <mat-select [(ngModel)]="selectedIngredient">
+        <mat-option *ngFor="let ingredient of posIngredients" [value]="ingredient" >
+            {{ingredient}}
+            </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field class="Menge" appearance="fill">
+    <mat-label>Menge</mat-label>
+    <input matInput #ingredientAmount>
+</mat-form-field>
+<button mat-raised-button class="plus-button" (click)="addIngredientField(selectedIngredient, ingredientAmount.value)">+</button>
+<ul>
+    <li *ngFor="let ingredient of exportIngredients">{{ingredient.name}}</li>
+</ul><br/>
 
-    <label for="new-recipe-prep">Zubereitung: </label>
-    <input mat-input id="new-recipe-prep" #recipePrep /><br/>
-
-    <button mat-raised-button class="add-button" (click)="add(recipeName.value, recipePrep.value)">
-        Rezept hinzufügen
-    </button>
-</div>
+<!--Zubereitung-->
+<mat-form-field appearance="fill">
+    <mat-label>Zubereitung</mat-label>
+    <textarea matInput #recipePrep></textarea>
+</mat-form-field><br/>
+<!--Speichern-->
+<button mat-raised-button class="add-button" (click)="add(recipeName.value, recipePrep.value)">
+    Rezept hinzufügen
+</button>
