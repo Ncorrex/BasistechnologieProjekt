@@ -64,6 +64,18 @@ export class InMemoryDataService implements InMemoryDbService{
     {
         name: 'Mehl',
         unit: 'g'
+    },
+    {
+        name: 'Milch',
+        unit: 'ml'
+    },
+    {
+        name: 'Zucker',
+        unit: 'g'
+    },
+    {
+        name: 'Eier',
+        unit: 'st'
     }
   ]
   return {
